@@ -13,16 +13,58 @@
   </head>
 
   <body>
+    {% load page_filters %}
+
     {% block content %}
-      <div class="row">
-        <h1 class="col s12">Инфляция в России</h1>
-        <div class="col s12 m8">
-        
+      <div class="container">
         <!-- Ваша логика -->
+          <h2 class="text-center"><u>Инфляция в России</u></h2><br>
+          <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th>Год</th>
+                <th>Янв</th>
+                <th>Фев</th>
+                <th>Мар</th>
+                <th>Апр</th>
+                <th>Май</th>
+                <th>Июн</th>
+                <th>Июл</th>
+                <th>Авг</th>
+                <th>Сен</th>
+                <th>Окт</th>
+                <th>Ноя</th>
+                <th>Дек</th>
+                <th>Суммарная</th>
+              </tr>
+            </thead>
+            <tbody>
 
+            {% if data %}
+            {% for i in data %}
+              <tr>
+                <td>{{i.Год}}</td>
+
+
+                <td style="background-color:{{ i.Янв|color }}">{{i.Янв}}</td>
+                <td style="background-color:{{ i.Фев|color }}">{{i.Фев}}</td>
+                <td style="background-color:{{ i.Мар|color }}">{{i.Мар}}</td>
+                <td style="background-color:{{ i.Апр|color }}">{{i.Апр}}</td>
+                <td style="background-color:{{ i.Май|color }}">{{i.Май}}</td>
+                <td style="background-color:{{ i.Июн|color }}">{{i.Июн}}</td>
+                <td style="background-color:{{ i.Июл|color }}">{{i.Июл}}</td>
+                <td style="background-color:{{ i.Авг|color }}">{{i.Авг}}</td>
+                <td style="background-color:{{ i.Сен|color }}">{{i.Сен}}</td>
+                <td style="background-color:{{ i.Окт|color }}">{{i.Окт}}</td>
+                <td style="background-color:{{ i.Ноя|color }}">{{i.Ноя}}</td>
+                <td style="background-color:{{ i.Дек|color }}">{{i.Дек}}</td>
+                <td style="background-color:grey">{{i.Суммарная}}</td>
+              </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+          </table>
         </div>
-      </div>
     {% endblock %}
-
   </body>
 </html>

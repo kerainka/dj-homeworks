@@ -23,3 +23,6 @@ urlpatterns = [
     path('', inflation_view, name='main'),
     path('admin/', admin.site.urls),
 ]
+
+
+
