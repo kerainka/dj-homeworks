@@ -17,4 +17,13 @@ class Command(BaseCommand):
 
             for line in phone_reader:
                 # TODO: Добавьте сохранение модели
-                pass
+                phone = Phone(
+                    id=int(line[0]),
+                    name=line[1],
+                    image=line[2],
+                    price=int(line[3]),
+                    release_date=line[4],
+                    lte_exists=line[5],
+                    slug='-'.join([word.lower() for word in line[1].split()])
+                )
+                phone.save()
