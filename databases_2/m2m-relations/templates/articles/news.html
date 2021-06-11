@@ -14,7 +14,7 @@
         </h4>
         <p class="card-text">{{ article.text }}</p>
 
-        {% for section in article.sections_all %}
+        {% for section in article.sections.all %}
           <span class="badge {% if section.main_title %}badge-primary{% else %}badge-secondary{% endif %}">{{ section.title }}</span>
         {% endfor %}
 
