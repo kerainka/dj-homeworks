@@ -7,4 +7,4 @@ class PubDateConverter:
         return value
 
     def to_url(self, value):
-        return value.__str__()
+        return value.__str__
