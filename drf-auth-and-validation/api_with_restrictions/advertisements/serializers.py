@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-
 from advertisements.models import Advertisement
 
 
@@ -10,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'first_name',
-                  'last_name',)
+                  'last_name')
 
 
 class AdvertisementSerializer(serializers.ModelSerializer):
@@ -35,11 +34,12 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         # через методы ViewSet.
         # само поле при этом объявляется как `read_only=True`
         validated_data["creator"] = self.context["request"].user
+
         return super().create(validated_data)
 
     def validate(self, data):
         """Метод для валидации. Вызывается при создании и обновлении."""
-
-        # TODO: добавьте требуемую валидацию
-
+        if Advertisement.objects.filter(creator=self.context["request"].user, status='OPEN').count() >= 10:
+            raise serializers.ValidationError('Ошибка! У одного пользователя должно быть '
+                                              'не больше 10 открытых объявлений')
         return data
